@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BlogSocial</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f7f9fc;
+      color: #1c1e21;
+    }
+
+    nav {
+      background-color: white;
+      padding: 20px 40px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav h1 {
+      font-size: 1.5em;
+      color: #111;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav ul li {
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .hero {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 30px;
+      background: linear-gradient(135deg, #1877f2, #1a5be1);
+      color: white;
+      border-radius: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      max-width: 600px;
+    }
+
+    .hero-text h2 {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    .hero-text p {
+      font-size: 1.1em;
+      color: #dce7ff;
+    }
+
+    .hero img {
+      max-width: 300px;
+      height: auto;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    .posts {
+      max-width: 1100px;
+      margin: 40px auto;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      overflow: hidden;
+      width: 320px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card .content {
+      padding: 20px;
+      flex: 1;
+    }
+
+    .author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .author img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+    }
+
+    .card h3 {
+      font-size: 1.1em;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 0.95em;
+      color: #555;
+    }
+
+    .card .actions {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 20px;
+      font-size: 0.9em;
+      border-top: 1px solid #eee;
+      color: #888;
+    }
+
+    .card .actions i {
+      color: #1877f2;
+      margin-right: 5px;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero img {
+        margin-top: 20px;
+      }
+
+      .posts {
+        justify-content: center;
+      }
+    }
+    footer {
+  background-color: #ffffff;
+  border-top: 1px solid #e6e6e6;
+  padding: 40px 20px 20px;
+  margin-top: 60px;
+  font-size: 0.95em;
+  color: #555;
+}
+
+.footer-content {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.footer-left h2 {
+  font-size: 1.5em;
+  color: #1877f2;
+  margin-bottom: 10px;
+}
+
+.footer-left p {
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+.footer-links ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-links ul li a {
+  text-decoration: none;
+  color: #1877f2;
+  transition: color 0.3s;
+}
+
+.footer-links ul li a:hover {
+  color: #1a5be1;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  color: #888;
+  font-size: 0.85em;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .footer-links ul {
+    justify-content: center;
+  }
+}
+.footer-logo {
+  width: 100px; /* Adjust size as needed */
+  height: auto;
+  margin-bottom: 10px;
+}
+.footer-paragraph {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 0 40px;
+  text-align: center;
+}
+
+.footer-paragraph p {
+  font-size: 1.05em;
+  line-height: 1.6;
+  color: #444;
+}
+
+
+
+  </style>
+</head>
+<body>
+
+  <nav>
+    <h1>Vibeo Blogs</h1>
+    <ul>
+      <li>Home</li>
+      <li>Explore</li>
+      <li>Write</li>
+      <li>Profile</li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h2>Vibeo Social Media Platform 2025</h2>
+      <p>Step into Vibeo — your digital stage to share, connect, and vibe with the world.</p>
+    </div>
+    <img src="image3.jpg" alt="Tech Image">
+  </section>
+
+  <section class="posts">
+    <div class="card">
+      <img src="/image4.jpg" alt="LANGUAGE">
+      <div class="content">
+        <div class="author">
+          <img src="/image4.jpg" alt="LANGUAGE">
+          <span>@devguru</span>
+        </div>
+        <h3>Every language you know is a new version of yourself.</h3>
+        <p>Words are more than grammar; they’re keys to hearts and cultures.</p>
+      </div>
+      <div class="actions">
+        <span><i>❤</i> 150</span>
+        <span><i>💬</i> 90</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="/image5.jpg" alt="INFLUENCER">
+      <div class="content">
+        <div class="author">
+          <img src="https://randomuser.me/api/portraits/women/42.jpg" alt="User">
+          <span>@techjulia</span>
+        </div>
+        <h3>Your vibe attracts your tribe—stay authentic, stay you</h3>
+        <p>You don’t need a million followers to make a meaningful impact—just your true voice..</p>
+      </div>
+      <div class="actions">
+        <span><i>❤</i> 132</span>
+        <span><i>💬</i> 19</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="image.jpg" alt="Security">
+      <div class="content">
+        <div class="author">
+          <img src="profile.jpg" alt="User">
+          <span>@syberwriter</span>
+        </div>
+        <h3>Staying Secure in the Digital Age</h3>
+        <p>Essential cybersecurity practices to protect your presence.</p>
+      </div>
+      <div class="actions">
+        <span><i>❤</i> 184</span>
+        <span><i>💬</i> 32</span>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-content">
+      <div class="footer-left">
+        <img src="logo.jpg" alt="Vibeo Logo" class="footer-logo">
+        <h2>Vibeo</h2>
+        <p>Where stories connect, vibes resonate, and communities grow.</p>
+      </div>
+      <div class="footer-links">
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+  
+    <!-- New full-width paragraph -->
+    <div class="footer-paragraph">
+      <p>
+        Vibeo is redefining the way we connect online. With seamless sharing, smart design, and real-time engagement,
+        we empower users to shape their digital identity and build vibrant communities around what truly matters.
+      </p>
+    </div>
+  
+    <div class="footer-bottom">
+      <p>&copy; 2025 Vibeo. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  
+  
+
+</body>
+</html>

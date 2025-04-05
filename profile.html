@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vibeo | Profile Page</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(to right, #c2e9fb, #a1c4fd);
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .edit-btn {
+      display: inline-block;
+      margin-bottom: 20px;
+      background-color: #4a90e2;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .edit-btn:hover {
+      background-color: #357bd8;
+    }
+
+    .profile-card, .form-container {
+      background: white;
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      display: none;
+    }
+
+    .profile-card.active,
+    .form-container.active {
+      display: block;
+    }
+
+    .profile-header {
+      text-align: center;
+    }
+
+    .profile-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+
+    .tag-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      background-color: #e0f0ff;
+      color: #0077cc;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      resize: vertical;
+    }
+
+    textarea {
+      min-height: 80px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      background-color: #4a90e2;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #357bd8;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button class="edit-btn" onclick="toggleEdit(true)">Edit Profile</button>
+
+    <!-- Profile Display Card -->
+    <div class="profile-card active" id="profileCard">
+      <div class="profile-header">
+        <img src="https://i.pravatar.cc/150?img=5" alt="Profile Photo" class="profile-img"/>
+        <h2 id="user-name">Shanaya Choudhary</h2>
+        <p id="user-job">Software Developer</p>
+      </div>
+      <div class="profile-body">
+        <p id="user-bio">Passionate about building intuitive UIs and exploring the intersection of design and development.</p>
+        <div class="section">
+          <h4>Interested Topics</h4>
+          <div id="user-interests" class="tag-container"></div>
+        </div>
+        <div class="section">
+          <h4>Hobbies</h4>
+          <div id="user-hobbies" class="tag-container"></div>
+        </div>
+        <div class="section">
+          <h4>Current Position</h4>
+          <p id="user-position">Frontend Engineer at Vibeo</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile Edit Form -->
+    <div class="form-container" id="editFormContainer">
+      <h2>Edit Your Profile</h2>
+      <form id="profileForm">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="bio">Bio</label>
+          <textarea id="bio" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="topics">Interested Topics (comma separated)</label>
+          <input type="text" id="topics" required />
+        </div>
+
+        <div class="form-group">
+          <label for="hobbies">Hobbies (comma separated)</label>
+          <input type="text" id="hobbies" required />
+        </div>
+
+        <div class="form-group">
+          <label for="job">Job Title</label>
+          <input type="text" id="job" required />
+        </div>
+
+        <div class="form-group">
+          <label for="position">Current Position</label>
+          <input type="text" id="position" required />
+        </div>
+
+        <button type="submit" class="btn">Save Profile</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const userData = {
+      name: "Shanaya Choudhary",
+      job: "Software Developer",
+      currentPosition: "Frontend Engineer at Vibeo",
+      bio: "Passionate about building intuitive UIs and exploring the intersection of design and development.",
+      interests: ["React.js", "UX Design", "Web3", "Open Source", "AI in Social Media"],
+      hobbies: ["Sketching", "Traveling", "Gaming", "Blogging"]
+    };
+
+    // Fill display data
+    function renderProfile(data) {
+      document.getElementById("user-name").textContent = data.name;
+      document.getElementById("user-job").textContent = data.job;
+      document.getElementById("user-bio").textContent = data.bio;
+      document.getElementById("user-position").textContent = data.currentPosition;
+
+      renderTags(data.interests, "user-interests");
+      renderTags(data.hobbies, "user-hobbies");
+    }
+
+    // Render tag bubbles
+    function renderTags(items, containerId) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = "";
+      items.forEach(item => {
+        const tag = document.createElement("span");
+        tag.className = "tag";
+        tag.textContent = item.trim();
+        container.appendChild(tag);
+      });
+    }
+
+    // Toggle Edit Mode
+    function toggleEdit(showForm) {
+      document.getElementById("profileCard").classList.toggle("active", !showForm);
+      document.getElementById("editFormContainer").classList.toggle("active", showForm);
+
+      if (showForm) {
+        // Pre-fill form with current data
+        document.getElementById("name").value = userData.name;
+        document.getElementById("bio").value = userData.bio;
+        document.getElementById("topics").value = userData.interests.join(", ");
+        document.getElementById("hobbies").value = userData.hobbies.join(", ");
+        document.getElementById("job").value = userData.job;
+        document.getElementById("position").value = userData.currentPosition;
+      }
+    }
+
+    // Handle form submission
+    document.getElementById("profileForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      userData.name = document.getElementById("name").value;
+      userData.bio = document.getElementById("bio").value;
+      userData.interests = document.getElementById("topics").value.split(",");
+      userData.hobbies = document.getElementById("hobbies").value.split(",");
+      userData.job = document.getElementById("job").value;
+      userData.currentPosition = document.getElementById("position").value;
+
+      renderProfile(userData);
+      toggleEdit(false);
+    });
+
+    // Initial load
+    renderProfile(userData);
+  </script>
+</body>
+</html>
